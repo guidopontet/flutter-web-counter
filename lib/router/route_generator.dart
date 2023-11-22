@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'package:flutter_web_counter/ui/pages/counter_page.dart';
 import 'package:flutter_web_counter/ui/pages/counter_provider_page.dart';
@@ -20,10 +23,18 @@ class RouteGenerator {
     return PageRouteBuilder(
       settings: RouteSettings(name: routeName),
       pageBuilder: (_, __, ___) => child,
-      transitionsBuilder: (_, animation, __, ___) => FadeTransition(
-        opacity: animation,
-        child: child,
-      ),
+      transitionsBuilder: (_, animation, __, ___) =>
+        (kIsWeb)
+        ? FadeTransition(
+          opacity: animation,
+          child: child,
+        )
+        : CupertinoPageTransition(
+            primaryRouteAnimation: animation,
+            secondaryRouteAnimation: animation,
+            child: child,
+            linearTransition: true
+          )
     );
   }
 }
