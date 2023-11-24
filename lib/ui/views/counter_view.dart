@@ -18,8 +18,6 @@ class _CounterViewState extends State<CounterView> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const CustomAppMenu(),
-        const Spacer(), // This widget will take all the available space
         const Text('Contador Stateful', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         FittedBox( // Responsive widget to fit the text inside the screen
           fit: BoxFit.contain,
